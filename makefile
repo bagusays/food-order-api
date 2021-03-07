@@ -5,6 +5,9 @@ migration-script:
 		printf '%s\n\n' '-- +migrate Up' '-- +migrate Down' > sql/migration/$(shell date '+%Y%m%d%H%M%S')_$(name).sql;\
 	fi
 
+test:
+	go test ./... -cover
+
 mockery:
 	mockery --all --inpackage
 
