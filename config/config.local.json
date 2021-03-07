@@ -1,0 +1,21 @@
+{
+  "mysql": {
+    "username": "root",
+    "password": "toor",
+    "database": "foodapp",
+    "host": "localhost",
+    "port": "3306",
+    "maxIdleConn": 5,
+    "maxOpenConn": 30,
+    "maxIdleTime": 300,
+    "maxLifetime": 600
+  },
+  "redis": {
+    "address": "localhost:6379",
+    "password": "",
+    "timeout": 30,
+    "poolSize": 5,
+    "maxConnAge": 600,
+    "ttl": 21600
+  }
+}
