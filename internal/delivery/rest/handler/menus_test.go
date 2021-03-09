@@ -17,6 +17,7 @@ import (
 )
 
 func TestFetchCategories(t *testing.T) {
+	now := time.Now()
 	testCases := []struct {
 		name       string
 		mockReturn []restspec.FetchMenuCategoriesResponse
@@ -29,8 +30,8 @@ func TestFetchCategories(t *testing.T) {
 				{
 					ID:        1,
 					Name:      "test",
-					CreatedAt: time.Now(),
-					UpdatedAt: time.Now(),
+					CreatedAt: &now,
+					UpdatedAt: &now,
 				},
 			},
 		},
@@ -210,6 +211,7 @@ func TestDeleteCategory(t *testing.T) {
 }
 
 func TestFetchAdditionals(t *testing.T) {
+	now := time.Now()
 	testCases := []struct {
 		name       string
 		mockReturn []restspec.FetchAdditionalsResponse
@@ -223,8 +225,8 @@ func TestFetchAdditionals(t *testing.T) {
 					ID:        1,
 					Name:      "test",
 					Price:     1000,
-					CreatedAt: time.Now(),
-					UpdatedAt: time.Now(),
+					CreatedAt: &now,
+					UpdatedAt: &now,
 				},
 			},
 		},
@@ -405,6 +407,7 @@ func TestDeleteAdditional(t *testing.T) {
 }
 
 func TestFetchMenus(t *testing.T) {
+	now := time.Now()
 	testCases := []struct {
 		name       string
 		mockReturn []restspec.FetchMenusResponse
@@ -420,8 +423,8 @@ func TestFetchMenus(t *testing.T) {
 					Description:  "description",
 					Price:        1000,
 					CategoryName: "signature",
-					CreatedAt:    time.Now(),
-					UpdatedAt:    time.Now(),
+					CreatedAt:    &now,
+					UpdatedAt:    &now,
 				},
 			},
 		},
@@ -604,6 +607,7 @@ func TestDeleteMenu(t *testing.T) {
 }
 
 func TestFetchEligibleAdditionalMenu(t *testing.T) {
+	now := time.Now()
 	testCases := []struct {
 		name       string
 		mockReturn []restspec.FetchEligibleAdditionalMenuResponse
@@ -618,8 +622,8 @@ func TestFetchEligibleAdditionalMenu(t *testing.T) {
 					MenuID:          1,
 					AdditionalName:  "additional",
 					AdditionalPrice: 100,
-					CreatedAt:       time.Now(),
-					UpdatedAt:       time.Now(),
+					CreatedAt:       &now,
+					UpdatedAt:       &now,
 				},
 			},
 		},

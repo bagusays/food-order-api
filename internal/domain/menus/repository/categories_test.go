@@ -30,8 +30,8 @@ func TestMenus_FetchCategory(t *testing.T) {
 				{
 					ID:        1,
 					Name:      "name",
-					CreatedAt: now,
-					UpdatedAt: now,
+					CreatedAt: &now,
+					UpdatedAt: &now,
 				},
 			},
 		},
