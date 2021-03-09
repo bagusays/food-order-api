@@ -5,10 +5,10 @@ import (
 )
 
 type FetchMenuCategoriesResponse struct {
-	ID        int       `json:"id"`
-	Name      string    `json:"name"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        int        `json:"id"`
+	Name      string     `json:"name"`
+	CreatedAt *time.Time `json:"created_at"`
+	UpdatedAt *time.Time `json:"updated_at"`
 }
 
 type CreateMenuCategoryRequest struct {
@@ -25,11 +25,11 @@ type DeleteMenuCategoryRequest struct {
 }
 
 type FetchAdditionalsResponse struct {
-	ID        int       `json:"id"`
-	Name      string    `json:"name"`
-	Price     float64   `json:"price"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	ID        int        `json:"id"`
+	Name      string     `json:"name"`
+	Price     float64    `json:"price"`
+	CreatedAt *time.Time `json:"created_at"`
+	UpdatedAt *time.Time `json:"updated_at"`
 }
 
 type CreateAdditionalRequest struct {
@@ -54,8 +54,8 @@ type FetchMenusResponse struct {
 	Price                  float64                               `json:"price"`
 	CategoryName           string                                `json:"category_name"`
 	EligibleAdditionalMenu []FetchEligibleAdditionalMenuResponse `json:"eligible_additional_menu"`
-	CreatedAt              time.Time                             `json:"created_at"`
-	UpdatedAt              time.Time                             `json:"updated_at"`
+	CreatedAt              *time.Time                            `json:"created_at"`
+	UpdatedAt              *time.Time                            `json:"updated_at"`
 }
 
 type CreateMenuRequest struct {
@@ -78,12 +78,12 @@ type DeleteMenuRequest struct {
 }
 
 type FetchEligibleAdditionalMenuResponse struct {
-	ID              int       `json:"id"`
-	MenuID          int       `json:"menu_id"`
-	AdditionalName  string    `json:"additional_name"`
-	AdditionalPrice float64   `json:"additional_price"`
-	CreatedAt       time.Time `json:"created_at"`
-	UpdatedAt       time.Time `json:"updated_at"`
+	ID              int        `json:"id"`
+	MenuID          int        `json:"menu_id"`
+	AdditionalName  string     `json:"additional_name"`
+	AdditionalPrice float64    `json:"additional_price"`
+	CreatedAt       *time.Time `json:"created_at"`
+	UpdatedAt       *time.Time `json:"updated_at"`
 }
 
 type CreateEligibleAdditionalMenuRequest struct {

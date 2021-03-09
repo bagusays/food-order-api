@@ -33,6 +33,7 @@ func TestMenus_FetchMenus(t *testing.T) {
 					CategoryName: "catname",
 					CreatedAt:    now,
 					UpdatedAt:    now,
+					DeletedAt:    nil,
 				},
 			},
 		},
@@ -56,11 +57,12 @@ func TestMenus_FetchMenus(t *testing.T) {
 			SELECT (.+)
 			FROM menus m
 			INNER JOIN menu_categories mc ON mc.id = m.menu_category_id
+			WHERE (.+)
 			ORDER BY mc.name`
 
-			dbResult := sqlmock.NewRows([]string{"id", "name", "description", "price", "category_name", "created_at", "updated_at"})
+			dbResult := sqlmock.NewRows([]string{"id", "name", "description", "price", "category_name", "created_at", "updated_at", "deleted_at"})
 			for _, m := range tc.mockRows {
-				dbResult.AddRow(m.ID, m.Name, m.Description, m.Price, m.CategoryName, m.CreatedAt, m.UpdatedAt)
+				dbResult.AddRow(m.ID, m.Name, m.Description, m.Price, m.CategoryName, m.CreatedAt, m.UpdatedAt, m.DeletedAt)
 			}
 
 			mock.ExpectQuery(query).WillReturnRows(dbResult).WillReturnError(tc.mockErr)
@@ -174,7 +176,7 @@ func TestMenus_UpdateMenu(t *testing.T) {
 }
 
 func TestMenus_DeleteMenu(t *testing.T) {
-	query := "DELETE FROM menus WHERE (.+)"
+	query := "UPDATE menus SET (.+) WHERE (.+)"
 	t.Run("should be succeed", func(t *testing.T) {
 		db, mock, _ := sqlmock.New()
 		dbx := sqlx.NewDb(db, "sqlmock")

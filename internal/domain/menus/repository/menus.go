@@ -15,6 +15,7 @@ func (m Menus) FetchMenus(ctx context.Context) ([]model.Menus, error) {
 	SELECT m.id, m.name, m.description, m.price, mc.name as category_name, m.created_at, m.updated_at 
 	FROM menus m
 	INNER JOIN menu_categories mc ON mc.id = m.menu_category_id
+	WHERE m.deleted_at is null
 	ORDER BY mc.name`
 
 	var res []model.Menus
@@ -44,7 +45,7 @@ func (m Menus) UpdateMenu(ctx context.Context, arg spec.UpdateMenu) error {
 }
 
 func (m Menus) DeleteMenu(ctx context.Context, id int) error {
-	query := "DELETE FROM menus WHERE id = ?"
+	query := "UPDATE menus SET deleted_at = now() WHERE id = ?"
 	_, err := m.db.ExecContext(ctx, query, id)
 	if err != nil {
 		return err
