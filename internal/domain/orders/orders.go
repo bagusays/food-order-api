@@ -8,6 +8,7 @@ import (
 
 type Usecase interface {
 	FetchAllOrders(ctx context.Context, userID int) ([]restspec.FetchOrders, error)
+	FetchOrder(ctx context.Context, userID, orderID int) (*restspec.FetchOrders, error)
 }
 
 type Repository interface {
@@ -16,4 +17,5 @@ type Repository interface {
 	FetchOrderDetails(ctx context.Context, orderID int) ([]model.OrderDetails, error)
 
 	FetchAllOrders(ctx context.Context, userID int) ([]model.Orders, error)
+	FetchOrder(ctx context.Context, userID, orderID int) (*model.Orders, error)
 }

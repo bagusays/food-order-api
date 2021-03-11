@@ -14,7 +14,7 @@ func (o *Orders) FetchAllOrders(ctx context.Context, userID int) ([]restspec.Fet
 
 	var res []restspec.FetchOrders
 	for _, order := range orders {
-		orderDetails, err := o.mappingOrderDetails(ctx, order)
+		orderDetails, err := o.mappingOrderDetails(ctx, &order)
 		if err != nil {
 			return nil, err
 		}
@@ -38,7 +38,34 @@ func (o *Orders) FetchAllOrders(ctx context.Context, userID int) ([]restspec.Fet
 	return res, nil
 }
 
-func (o *Orders) mappingOrderDetails(ctx context.Context, order model.Orders) ([]restspec.OrderDetails, error) {
+func (o *Orders) FetchOrder(ctx context.Context, userID, orderID int) (*restspec.FetchOrders, error) {
+	order, err := o.orderRepo.FetchOrder(ctx, userID, orderID)
+	if err != nil {
+		return nil, err
+	}
+
+	orderDetails, err := o.mappingOrderDetails(ctx, order)
+	if err != nil {
+		return nil, err
+	}
+
+	resOrder := &restspec.FetchOrders{
+		ID:            order.ID,
+		UserID:        order.UserID,
+		PaymentStatus: order.PaymentStatus,
+		PaidBy:        order.PaidBy,
+		PaidAt:        order.PaidAt,
+		TotalPrice:    order.TotalPrice,
+		OrderStatus:   order.OrderStatus,
+		OrderDetails:  orderDetails,
+		CreatedAt:     order.CreatedAt,
+		UpdatedAt:     order.UpdatedAt,
+	}
+
+	return resOrder, nil
+}
+
+func (o *Orders) mappingOrderDetails(ctx context.Context, order *model.Orders) ([]restspec.OrderDetails, error) {
 	orderDetails, err := o.orderRepo.FetchOrderDetails(ctx, order.ID)
 	if err != nil {
 		return nil, err
@@ -46,7 +73,7 @@ func (o *Orders) mappingOrderDetails(ctx context.Context, order model.Orders) ([
 
 	var orderDetailResult []restspec.OrderDetails
 	for _, orderDetail := range orderDetails {
-		itemDetails, err := o.mappingItemDetails(ctx, orderDetail)
+		itemDetails, err := o.mappingItemDetails(ctx, &orderDetail)
 		if err != nil {
 			return nil, err
 		}
@@ -69,7 +96,7 @@ func (o *Orders) mappingOrderDetails(ctx context.Context, order model.Orders) ([
 	return orderDetailResult, nil
 }
 
-func (o *Orders) mappingItemDetails(ctx context.Context, orderDetail model.OrderDetails) ([]restspec.ItemDetails, error) {
+func (o *Orders) mappingItemDetails(ctx context.Context, orderDetail *model.OrderDetails) ([]restspec.ItemDetails, error) {
 	itemDetails, err := o.orderRepo.FetchItemDetails(ctx, orderDetail.ID)
 	if err != nil {
 		return nil, err

@@ -24,3 +24,24 @@ func FetchAllOrders(usecase orders.Usecase) echo.HandlerFunc {
 		return c.JSON(http.StatusOK, res)
 	}
 }
+
+func FetchOrder(usecase orders.Usecase) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		userID, err := strconv.Atoi(c.Param("userID"))
+		if err != nil {
+			return shared.ErrIntegerFormat
+		}
+
+		orderID, err := strconv.Atoi(c.Param("orderID"))
+		if err != nil {
+			return shared.ErrIntegerFormat
+		}
+
+		res, err := usecase.FetchOrder(c.Request().Context(), userID, orderID)
+		if err != nil {
+			return err
+		}
+
+		return c.JSON(http.StatusOK, res)
+	}
+}

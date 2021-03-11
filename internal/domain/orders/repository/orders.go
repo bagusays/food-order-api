@@ -16,6 +16,15 @@ func (o *Orders) FetchAllOrders(ctx context.Context, userID int) ([]model.Orders
 	return res, nil
 }
 
+func (o *Orders) FetchOrder(ctx context.Context, userID, orderID int) (*model.Orders, error) {
+	var res model.Orders
+	err := o.db.GetContext(ctx, &res, "SELECT * FROM orders WHERE user_id = ? AND id = ?", userID, orderID)
+	if err != nil {
+		return nil, checkReadErr(err)
+	}
+	return &res, nil
+}
+
 func (o *Orders) CreateOrder(ctx context.Context, arg spec.CreateOrder) error {
 	tx, err := o.db.BeginTx(ctx, nil)
 	if err != nil {

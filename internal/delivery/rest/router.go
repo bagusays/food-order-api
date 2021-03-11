@@ -31,4 +31,5 @@ func RegisterRoute(container *delivery.Container) {
 	g.DELETE("/eligible-additional-menu", handler.DeleteEligibleAdditionalMenu(container.MenusUsecase))
 
 	g.GET("/orders/:userID", handler.FetchAllOrders(container.OrdersUsecase))
+	g.GET("/orders/:userID/:orderID", handler.FetchOrder(container.OrdersUsecase))
 }

@@ -60,6 +60,29 @@ func (_m *MockRepository) FetchItemDetails(ctx context.Context, orderDetailID in
 	return r0, r1
 }
 
+// FetchOrder provides a mock function with given fields: ctx, userID, orderID
+func (_m *MockRepository) FetchOrder(ctx context.Context, userID int, orderID int) (*model.Orders, error) {
+	ret := _m.Called(ctx, userID, orderID)
+
+	var r0 *model.Orders
+	if rf, ok := ret.Get(0).(func(context.Context, int, int) *model.Orders); ok {
+		r0 = rf(ctx, userID, orderID)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*model.Orders)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, int, int) error); ok {
+		r1 = rf(ctx, userID, orderID)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // FetchOrderDetails provides a mock function with given fields: ctx, orderID
 func (_m *MockRepository) FetchOrderDetails(ctx context.Context, orderID int) ([]model.OrderDetails, error) {
 	ret := _m.Called(ctx, orderID)

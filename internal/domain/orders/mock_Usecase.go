@@ -36,3 +36,26 @@ func (_m *MockUsecase) FetchAllOrders(ctx context.Context, userID int) ([]restsp
 
 	return r0, r1
 }
+
+// FetchOrder provides a mock function with given fields: ctx, userID, orderID
+func (_m *MockUsecase) FetchOrder(ctx context.Context, userID int, orderID int) (*restspec.FetchOrders, error) {
+	ret := _m.Called(ctx, userID, orderID)
+
+	var r0 *restspec.FetchOrders
+	if rf, ok := ret.Get(0).(func(context.Context, int, int) *restspec.FetchOrders); ok {
+		r0 = rf(ctx, userID, orderID)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*restspec.FetchOrders)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, int, int) error); ok {
+		r1 = rf(ctx, userID, orderID)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
