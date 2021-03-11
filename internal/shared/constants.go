@@ -9,4 +9,5 @@ const (
 	StatusErrMenuIDCannotBeZero         = "1006"
 	StatusErrAdditionalIDCannotBeZero   = "1007"
 	StatusCategoryIDNotFound            = "1008"
+	StatusErrIntegerFormat              = "1009"
 )

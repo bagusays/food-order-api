@@ -30,20 +30,6 @@ func (_m *MockUsecase) CreateAdditional(ctx context.Context, arg spec.CreateAddi
 	return r0
 }
 
-// CreateMenuCategory provides a mock function with given fields: ctx, arg
-func (_m *MockUsecase) CreateMenuCategory(ctx context.Context, arg spec.CreateMenuCategory) error {
-	ret := _m.Called(ctx, arg)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, spec.CreateMenuCategory) error); ok {
-		r0 = rf(ctx, arg)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // CreateEligibleAdditionalMenu provides a mock function with given fields: ctx, arg
 func (_m *MockUsecase) CreateEligibleAdditionalMenu(ctx context.Context, arg spec.CreateEligibleAdditionalMenu) error {
 	ret := _m.Called(ctx, arg)
@@ -72,13 +58,13 @@ func (_m *MockUsecase) CreateMenu(ctx context.Context, arg spec.CreateMenu) erro
 	return r0
 }
 
-// DeleteAdditional provides a mock function with given fields: ctx, id
-func (_m *MockUsecase) DeleteAdditional(ctx context.Context, id int) error {
-	ret := _m.Called(ctx, id)
+// CreateMenuCategory provides a mock function with given fields: ctx, arg
+func (_m *MockUsecase) CreateMenuCategory(ctx context.Context, arg spec.CreateMenuCategory) error {
+	ret := _m.Called(ctx, arg)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, int) error); ok {
-		r0 = rf(ctx, id)
+	if rf, ok := ret.Get(0).(func(context.Context, spec.CreateMenuCategory) error); ok {
+		r0 = rf(ctx, arg)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -86,8 +72,8 @@ func (_m *MockUsecase) DeleteAdditional(ctx context.Context, id int) error {
 	return r0
 }
 
-// DeleteMenuCategory provides a mock function with given fields: ctx, id
-func (_m *MockUsecase) DeleteMenuCategory(ctx context.Context, id int) error {
+// DeleteAdditional provides a mock function with given fields: ctx, id
+func (_m *MockUsecase) DeleteAdditional(ctx context.Context, id int) error {
 	ret := _m.Called(ctx, id)
 
 	var r0 error
@@ -116,6 +102,20 @@ func (_m *MockUsecase) DeleteEligibleAdditionalMenu(ctx context.Context, id int)
 
 // DeleteMenu provides a mock function with given fields: ctx, id
 func (_m *MockUsecase) DeleteMenu(ctx context.Context, id int) error {
+	ret := _m.Called(ctx, id)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, int) error); ok {
+		r0 = rf(ctx, id)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// DeleteMenuCategory provides a mock function with given fields: ctx, id
+func (_m *MockUsecase) DeleteMenuCategory(ctx context.Context, id int) error {
 	ret := _m.Called(ctx, id)
 
 	var r0 error
@@ -234,20 +234,6 @@ func (_m *MockUsecase) UpdateAdditional(ctx context.Context, arg spec.UpdateAddi
 	return r0
 }
 
-// UpdateMenuCategory provides a mock function with given fields: ctx, arg
-func (_m *MockUsecase) UpdateMenuCategory(ctx context.Context, arg spec.UpdateMenuCategories) error {
-	ret := _m.Called(ctx, arg)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, spec.UpdateMenuCategories) error); ok {
-		r0 = rf(ctx, arg)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // UpdateEligibleAdditionalMenu provides a mock function with given fields: ctx, arg
 func (_m *MockUsecase) UpdateEligibleAdditionalMenu(ctx context.Context, arg spec.UpdateEligibleAdditionalMenu) error {
 	ret := _m.Called(ctx, arg)
@@ -268,6 +254,20 @@ func (_m *MockUsecase) UpdateMenu(ctx context.Context, arg spec.UpdateMenu) erro
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, spec.UpdateMenu) error); ok {
+		r0 = rf(ctx, arg)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// UpdateMenuCategory provides a mock function with given fields: ctx, arg
+func (_m *MockUsecase) UpdateMenuCategory(ctx context.Context, arg spec.UpdateMenuCategories) error {
+	ret := _m.Called(ctx, arg)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, spec.UpdateMenuCategories) error); ok {
 		r0 = rf(ctx, arg)
 	} else {
 		r0 = ret.Error(0)

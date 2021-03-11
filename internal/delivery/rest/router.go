@@ -29,4 +29,6 @@ func RegisterRoute(container *delivery.Container) {
 	g.PUT("/eligible-additional-menu", handler.CreateEligibleAdditionalMenu(container.MenusUsecase))
 	g.PATCH("/eligible-additional-menu", handler.UpdateEligibleAdditionalMenu(container.MenusUsecase))
 	g.DELETE("/eligible-additional-menu", handler.DeleteEligibleAdditionalMenu(container.MenusUsecase))
+
+	g.GET("/orders/:userID", handler.FetchAllOrders(container.OrdersUsecase))
 }

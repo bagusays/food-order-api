@@ -30,20 +30,6 @@ func (_m *MockRepository) CreateAdditional(ctx context.Context, name string, pri
 	return r0
 }
 
-// CreateCategory provides a mock function with given fields: ctx, name
-func (_m *MockRepository) CreateMenuCategory(ctx context.Context, name string) error {
-	ret := _m.Called(ctx, name)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, string) error); ok {
-		r0 = rf(ctx, name)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // CreateEligibleAdditionalMenu provides a mock function with given fields: ctx, menuID, additionalID
 func (_m *MockRepository) CreateEligibleAdditionalMenu(ctx context.Context, menuID int, additionalID int) error {
 	ret := _m.Called(ctx, menuID, additionalID)
@@ -72,13 +58,13 @@ func (_m *MockRepository) CreateMenu(ctx context.Context, arg spec.CreateMenu) e
 	return r0
 }
 
-// DeleteAdditional provides a mock function with given fields: ctx, id
-func (_m *MockRepository) DeleteAdditional(ctx context.Context, id int) error {
-	ret := _m.Called(ctx, id)
+// CreateMenuCategory provides a mock function with given fields: ctx, name
+func (_m *MockRepository) CreateMenuCategory(ctx context.Context, name string) error {
+	ret := _m.Called(ctx, name)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, int) error); ok {
-		r0 = rf(ctx, id)
+	if rf, ok := ret.Get(0).(func(context.Context, string) error); ok {
+		r0 = rf(ctx, name)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -86,8 +72,8 @@ func (_m *MockRepository) DeleteAdditional(ctx context.Context, id int) error {
 	return r0
 }
 
-// DeleteCategory provides a mock function with given fields: ctx, id
-func (_m *MockRepository) DeleteMenuCategory(ctx context.Context, id int) error {
+// DeleteAdditional provides a mock function with given fields: ctx, id
+func (_m *MockRepository) DeleteAdditional(ctx context.Context, id int) error {
 	ret := _m.Called(ctx, id)
 
 	var r0 error
@@ -128,6 +114,20 @@ func (_m *MockRepository) DeleteMenu(ctx context.Context, id int) error {
 	return r0
 }
 
+// DeleteMenuCategory provides a mock function with given fields: ctx, id
+func (_m *MockRepository) DeleteMenuCategory(ctx context.Context, id int) error {
+	ret := _m.Called(ctx, id)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, int) error); ok {
+		r0 = rf(ctx, id)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // FetchAdditionals provides a mock function with given fields: ctx
 func (_m *MockRepository) FetchAdditionals(ctx context.Context) ([]model.Additionals, error) {
 	ret := _m.Called(ctx)
@@ -151,16 +151,16 @@ func (_m *MockRepository) FetchAdditionals(ctx context.Context) ([]model.Additio
 	return r0, r1
 }
 
-// FetchCategory provides a mock function with given fields: ctx
-func (_m *MockRepository) FetchMenuCategory(ctx context.Context) ([]model.MenuCategories, error) {
+// FetchEligibleAdditionalMenu provides a mock function with given fields: ctx
+func (_m *MockRepository) FetchEligibleAdditionalMenu(ctx context.Context) ([]model.EligibleAdditionalMenu, error) {
 	ret := _m.Called(ctx)
 
-	var r0 []model.MenuCategories
-	if rf, ok := ret.Get(0).(func(context.Context) []model.MenuCategories); ok {
+	var r0 []model.EligibleAdditionalMenu
+	if rf, ok := ret.Get(0).(func(context.Context) []model.EligibleAdditionalMenu); ok {
 		r0 = rf(ctx)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]model.MenuCategories)
+			r0 = ret.Get(0).([]model.EligibleAdditionalMenu)
 		}
 	}
 
@@ -174,16 +174,16 @@ func (_m *MockRepository) FetchMenuCategory(ctx context.Context) ([]model.MenuCa
 	return r0, r1
 }
 
-// FetchEligibleAdditionalMenu provides a mock function with given fields: ctx
-func (_m *MockRepository) FetchEligibleAdditionalMenu(ctx context.Context) ([]model.EligibleAdditionalMenu, error) {
+// FetchMenuCategory provides a mock function with given fields: ctx
+func (_m *MockRepository) FetchMenuCategory(ctx context.Context) ([]model.MenuCategories, error) {
 	ret := _m.Called(ctx)
 
-	var r0 []model.EligibleAdditionalMenu
-	if rf, ok := ret.Get(0).(func(context.Context) []model.EligibleAdditionalMenu); ok {
+	var r0 []model.MenuCategories
+	if rf, ok := ret.Get(0).(func(context.Context) []model.MenuCategories); ok {
 		r0 = rf(ctx)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]model.EligibleAdditionalMenu)
+			r0 = ret.Get(0).([]model.MenuCategories)
 		}
 	}
 
@@ -234,20 +234,6 @@ func (_m *MockRepository) UpdateAdditional(ctx context.Context, name string, pri
 	return r0
 }
 
-// UpdateCategory provides a mock function with given fields: ctx, name, id
-func (_m *MockRepository) UpdateMenuCategory(ctx context.Context, name string, id int) error {
-	ret := _m.Called(ctx, name, id)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, string, int) error); ok {
-		r0 = rf(ctx, name, id)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // UpdateEligibleAdditionalMenu provides a mock function with given fields: ctx, menuID, additionalID, id
 func (_m *MockRepository) UpdateEligibleAdditionalMenu(ctx context.Context, menuID int, additionalID int, id int) error {
 	ret := _m.Called(ctx, menuID, additionalID, id)
@@ -269,6 +255,20 @@ func (_m *MockRepository) UpdateMenu(ctx context.Context, arg spec.UpdateMenu) e
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, spec.UpdateMenu) error); ok {
 		r0 = rf(ctx, arg)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// UpdateMenuCategory provides a mock function with given fields: ctx, name, id
+func (_m *MockRepository) UpdateMenuCategory(ctx context.Context, name string, id int) error {
+	ret := _m.Called(ctx, name, id)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, string, int) error); ok {
+		r0 = rf(ctx, name, id)
 	} else {
 		r0 = ret.Error(0)
 	}

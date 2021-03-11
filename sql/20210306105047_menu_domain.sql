@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS additionals (
 	id INT auto_increment NOT NULL,
 	name varchar(100) NOT NULL,
-	price DECIMAL(10, 2) NOT NULL,
+	price BIGINT NOT NULL,
 	created_at TIMESTAMP DEFAULT now() NOT NULL,
 	updated_at TIMESTAMP NULL,
 	CONSTRAINT additionals_PK PRIMARY KEY (id)
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS menus (
 	id INT auto_increment NOT NULL,
 	name varchar(100) NOT NULL,
 	description text NOT NULL,
-	price DECIMAL(10, 2) NOT NULL,
+	price BIGINT NOT NULL,
 	menu_category_id INT NOT NULL,
 	created_at TIMESTAMP DEFAULT now() NOT NULL,
 	updated_at TIMESTAMP NULL,

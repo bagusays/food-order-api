@@ -11,6 +11,7 @@ var (
 	ErrMenuIDCannotBeNil         = errors.New("menu_id cannot be nil/zero")
 	ErrAdditionalIDCannotBeNil   = errors.New("additional_id cannot be nil/zero")
 	ErrMenuCategoryIDNotFound    = errors.New("menu_category_id is not found. please insert before use")
+	ErrIntegerFormat             = errors.New("please put correct integer format")
 )
 
 var mapErrToStatusCode = map[error]string{
@@ -22,6 +23,7 @@ var mapErrToStatusCode = map[error]string{
 	ErrMenuIDCannotBeNil:         StatusErrMenuIDCannotBeZero,
 	ErrAdditionalIDCannotBeNil:   StatusErrAdditionalIDCannotBeZero,
 	ErrMenuCategoryIDNotFound:    StatusCategoryIDNotFound,
+	ErrIntegerFormat:             StatusErrIntegerFormat,
 }
 
 func MapErrToStatusCode(err error) (string, bool) {
